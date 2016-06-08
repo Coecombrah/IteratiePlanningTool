@@ -12,19 +12,19 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-            Schema::create('projects', function (Blueprint $table) {
+            Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('projectnaam');
+            $table->string('name');
             $table->timestamps();
         });
     
-        Schema::create('project_user', function(Blueprint $table)
+        Schema::create('task_user', function(Blueprint $table)
         {
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->integer('project_id')->unsigned()->index();
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->integer('task_id')->unsigned()->index();
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->timestamps();
         });
     }

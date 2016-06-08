@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,11 +25,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-    
-    public function projects()
+    public function tasks()
     {
-        return $this->belongsToMany('App\project');
+        return $this->belongsToMany('App\task')->withTimestamps();
     }
+
 
 }
