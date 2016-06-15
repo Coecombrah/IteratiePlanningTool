@@ -12,6 +12,7 @@
 */
 
 use App\Task;
+use App\task_user;
 use Illuminate\Http\Request;
 
 
@@ -25,46 +26,39 @@ Route::get('/home', 'HomeController@index');
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
+Route::get('/plannings', 'planningController@index');
+Route::get('/geenadmin', 'geenadminController@index');
+Route::get('/opleverings', 'opleveringController@index');
+
+Route::auth();
 Route::group(['middleware' => ['web']], function () {
+
+
+
+
+    Route::group(['middleware' => 'App\Http\Middleware\Admin'], function()
+    {
+        Route::get('/admin', function()
+        {
+            $watisadmin = Task::orderBy('created_at', 'asc')->get();
+
+            return view('tasks', ['tasks' => $watisadmin]);
+        });
+
+    });
+
     /**
      * Show Task Dashboard
      */
-    //Route::get('/tasks', function () {
-    //    return view('tasks', [
-     //       'tasks' => Task::orderBy('created_at', 'asc')->get()
-     //   ]);
-    //});
 
-
-    // route says: /tasks/
     Route::get('/tasks', function () {
-        //$tasks = Task::where('active', 1)->orderBy('created_at', 'asc')->get();
-        //$kaas = DB::table('task_user')
-        //      ->JOIN('user_id', Auth::user()
-        //          ->ON(users.id = task_user.user_id)
-        //          ->where(user_id = auth::)
-        //     ->id )->first();
-        //$u = User::find(1)->tasks;
-        //$waarom = DB::table('task_user')
-        //    ->join('users')->on('task_user', '=', task_user.user_id)->get();
-
-
-
-
         $watisdit = DB::table('task_user')->join('tasks', function($join)
             { $user = Auth::user();
                 $join->on('tasks.id', '=', 'task_user.task_id')->where('user_id', '=', $user["id"]);
 	        })->get();
 
-
-
-
-
         return view('tasks', ['tasks' => $watisdit]);
     });
-
-
-
 
 
     /**
@@ -85,13 +79,17 @@ Route::group(['middleware' => ['web']], function () {
         $task->name = $request->name;
         $task->save();
 
-        return redirect('/');
+        //$taskUser = new task_user;
+        //$taskUser-> user_id = $request->name;
+        //$taskUser->save();
+
+        return redirect('/tasks');
     });
 
     /**
      * Delete Task
      */
-    Route::delete('/task/{id}', function ($id) {
+    Route::delete('/taskss/{id}', function ($id) {
         Task::findOrFail($id)->delete();
 
         return redirect('/');
@@ -99,6 +97,9 @@ Route::group(['middleware' => ['web']], function () {
 
 
 });
+
+
+
 
 
 

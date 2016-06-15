@@ -8,13 +8,13 @@
             @if (count($tasks) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Tasks
+                        Projecten
                     </div>
 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
-                            <th>Task</th>
+                            <th>Projectnaam</th>
                             <th>&nbsp;</th>
                             </thead>
                             <tbody>

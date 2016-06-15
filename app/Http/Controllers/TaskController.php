@@ -13,21 +13,14 @@ class TaskController extends Controller
 {
     // route says: /tasks/
     function index() {
-        $tasks = Task::where('active', 1)->orderBy('created_at', 'asc')->get();
-        //$kaas = DB::table('task_user')
-          //      ->JOIN('user_id', Auth::user()
-          //          ->ON(users.id = task_user.user_id)
-          //          ->where(user_id = auth::)
-        //     ->id )->first();
-        //$u = User::find(1)->tasks;
-        //$waarom = DB::table('task_user')
-        //    ->join('users')->on('task_user', '=', task_user.user_id)->get();
+        @if (isset(Auth::user->id(1))
+        $watisadmin = Task::orderBy('created_at', 'asc')->get();
 
-        return view('tasks', ['tasks' => $tasks]);
-
-
-
-
+        return view('tasks', ['tasks' => $watisadmin]);
+    }
+    @else
+        echo"wat";
+    @endif
     }
 
     // if route is /task/
