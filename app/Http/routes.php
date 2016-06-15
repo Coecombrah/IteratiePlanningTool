@@ -65,6 +65,7 @@ Route::group(['middleware' => ['web']], function () {
      * Add New Task
      */
     Route::post('/task', function (Request $request) {
+        $user = Auth::user();
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
@@ -79,17 +80,13 @@ Route::group(['middleware' => ['web']], function () {
         $task->name = $request->name;
         $task->save();
 
-        //$taskUser = new task_user;
-        //$taskUser-> user_id = $request->name;
-        //$taskUser->save();
-
         return redirect('/tasks');
     });
 
     /**
      * Delete Task
      */
-    Route::delete('/taskss/{id}', function ($id) {
+    Route::delete('/tasks/{id}', function ($id) {
         Task::findOrFail($id)->delete();
 
         return redirect('/');
