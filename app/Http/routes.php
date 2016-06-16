@@ -42,7 +42,7 @@ Route::group(['middleware' => ['web']], function () {
         {
             $watisadmin = Task::orderBy('created_at', 'asc')->get();
 
-            return view('tasks', ['tasks' => $watisadmin]);
+            return view('admintasks', ['admintasks' => $watisadmin]);
         });
 
     });
@@ -59,6 +59,23 @@ Route::group(['middleware' => ['web']], function () {
 
         return view('tasks', ['tasks' => $watisdit]);
     });
+
+    /**
+     * Show TaskID page
+     */
+
+
+    Route::get('/tasks/{id}', function ($id) {
+        $watisdit = DB::table('tasks')->where('tasks.id', '=', $id)->get();
+
+        return view('taskids', ['taskids' => $watisdit]);
+        
+
+    });
+
+    Route::get('/tasks/{id}/opleverings', 'opleveringController@index');
+    Route::get('/tasks/{id}/plannings', 'planningController@index');
+
 
 
     /**

@@ -5,7 +5,7 @@
         <div class="col-sm-offset-2 col-sm-8">
 
             <!-- Current Tasks -->
-            @if (count($tasks) > 0)
+            @if (count($admintasks) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Projecten
@@ -15,25 +15,26 @@
                         <table class="table table-striped task-table">
                             <thead>
                             <th>Projectnaam</th>
+                            <th>id</th>
                             <th>&nbsp;</th>
                             </thead>
                             <tbody>
-                            @foreach ($tasks as $task)
+                            @foreach ($admintasks as $admintask)
                                 <tr>
-                                    <td class="table-text"><div>{{ $task->name }}</div></td>
-
-                                    <!-- ga! knop hieronder -->
+                                    <td class="table-text"><div>{{ $admintask->name }}</div></td>
+                                    <td class="table-text"><div>{{ $admintask->id }}</div></td>
+                                    <!-- Task Delete Button -->
                                     <td>
-                                        <form action="/iteratieproject/public/tasks/{{ $task->id }}">
+                                        <form action="/iteratieproject/public/tasks/{{ $admintask->id }}">
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-pencil"></i>iets
                                             </button>
                                         </form>
-                                    </td>
 
+
+                                    </td>
                                 </tr>
                             @endforeach
-
                             </tbody>
                         </table>
                     </div>
