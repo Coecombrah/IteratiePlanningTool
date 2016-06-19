@@ -71,6 +71,10 @@ use App\Task;
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/admin') }}">Administrator paneel</a></li>
                 </ul>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/adminroles') }}">Administrator rechten</a></li>
+                </ul>
                 @endif
 
 

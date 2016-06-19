@@ -26,8 +26,8 @@
                                     <!-- Task Delete Button -->
                                     <td>
                                         <form action="/iteratieproject/public/tasks/{{ $admintask->id }}">
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-pencil"></i>iets
+                                            <button type="submit" class="btn btn-danger" style="float: right">
+                                                <i class="fa fa-btn fa-cog"></i>iets
                                             </button>
                                         </form>
 

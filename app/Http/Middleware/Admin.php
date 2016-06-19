@@ -15,7 +15,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->type != 'a')
+        if ($request->user()->type != 'Administrator')
         {
             return redirect('/geenadmin');
         }

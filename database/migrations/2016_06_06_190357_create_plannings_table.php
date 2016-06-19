@@ -18,26 +18,26 @@ class CreatePlanningsTable extends Migration
             $table->string('opdrachtgever');
             $table->string('uitvoerder');
             $table->integer('iteratienummer');
-            $table->dateTime('startdatum');
-            $table->dateTime('einddatum');
+            $table->date('startdatum');
+            $table->date('einddatum');
             $table->string('bijzonderheden');
             $table->integer('werkdagen');
             $table->integer('kosten');
             $table->string('versiebeheer');
             $table->string('bugs');
             $table->string('features');
-            $table->dateTime('oplevering');
-            $table->dateTime('volgende_vergadering');
+            $table->date('oplevering');
+            $table->date('volgende_vergadering');
             $table->timestamps();
         });
 
         Schema::create('planning_task', function(Blueprint $table)
         {
             $table->integer('planning_id')->unsigned()->index();
-            $table->foreign('planning_id')->references('id')->on('plannings')->onDelete('cascade');
+            $table->foreign('planning_id')->references('id')->on('plannings');
 
             $table->integer('task_id')->unsigned()->index();
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+            $table->foreign('task_id')->references('id')->on('tasks');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class planningController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $reguest, $id)
     {
         //
     }

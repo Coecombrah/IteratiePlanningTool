@@ -10,26 +10,28 @@
                     <div class="panel-body">
                         </br>
                         <!-- New Task Form -->
-                        <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+
+                        <form action="{{ url('/tasks/{id}/plannings')}}" method="POST" class="form-horizontal">
+
                         {{ csrf_field() }}
 
                         <!-- Project -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Project</label>
+                                <label for="project-name" class="col-sm-3 control-label">Project</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="project" id="project-name" class="form-control" value="{{ old('project') }}">
                                 </div>
                             </div>
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Opdrachtgever -->
+                            <!-- opdrachtgever -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Oprachtgever</label>
+                                <label for="opdrachtgever-name" class="col-sm-3 control-label">opdrachtgever</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Oprachtgever" id="Oprachtgever" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="opdrachtgever" id="opdrachtgever" class="form-control" value="{{ old('opdrachtgever') }}">
                                 </div>
                             </div>
 
@@ -37,10 +39,10 @@
 
                             <!-- Uitvoerder -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Uitvoerder</label>
+                                <label for="Uitvoerder-name" class="col-sm-3 control-label">Uitvoerder</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Uitvoerder" id="Uitvoerder" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="Uitvoerder" id="Uitvoerder" class="form-control" value="{{ old('Uitvoerder') }}">
                                 </div>
                             </div>
 
@@ -48,10 +50,10 @@
 
                             <!-- Iteratie Nummer -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Iteratie Nummer</label>
+                                <label for="iteratienummer-name" class="col-sm-3 control-label">iteratienummer</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Iteratie Nummer" id="Iteratie Nummer" class="form-control" value="{{ old('task') }}">
+                                    <input type="number" name="iteratienummer" id="iteratienummer" class="form-control" value="{{ old('iteratienummer') }}">
                                 </div>
                             </div>
 
@@ -59,10 +61,10 @@
 
                             <!-- StartDatum -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">StartDatum</label>
+                                <label for="startdatum-name" class="col-sm-3 control-label">startdatum</label>
 
                                 <div class="col-sm-6">
-                                    <input type="date" name="StartDatum" id="StartDatum" class="form-control" value="{{ old('task') }}">
+                                    <input type="date" name="startdatum" id="startdatum" class="form-control" value="{{ old('startdatum') }}">
                                 </div>
                             </div>
 
@@ -70,55 +72,55 @@
 
                             <!-- EindDatum -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">EindDatum</label>
+                                <label for="einddatum-name" class="col-sm-3 control-label">einddatum</label>
 
                                 <div class="col-sm-6">
-                                    <input type="date" name="EindDatum" id="EindDatum" class="form-control" value="{{ old('task') }}">
+                                    <input type="date" name="einddatum" id="einddatum" class="form-control" value="{{ old('einddatum') }}">
                                 </div>
                             </div>
 
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Werkdagen -->
+                            <!-- bijzonderheden -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Werkdagen</label>
+                                <label for="bijzonderheden-name" class="col-sm-3 control-label">bijzonderheden</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Werkdagen" id="Werkdagen" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="bijzonderheden" id="bijzonderheden" class="form-control" value="{{ old('bijzonderheden') }}">
                                 </div>
                             </div>
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Kosten -->
+                            <!-- werkdagen -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Kosten</label>
+                                <label for="werkdagen-name" class="col-sm-3 control-label">werkdagen</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Kosten" id="Kosten" class="form-control" value="{{ old('task') }}">
+                                    <input type="number" name="werkdagen" id="werkdagen" class="form-control" value="{{ old('werkdagen') }}">
                                 </div>
                             </div>
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- VersieBeheer -->
+                            <!-- kosten -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">VersieBeheer</label>
+                                <label for="kosten-name" class="col-sm-3 control-label">kosten</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="VersieBeheer" id="VersieBeheer" class="form-control" value="{{ old('task') }}">
+                                    <input type="number" name="kosten" id="kosten" class="form-control" value="{{ old('kosten') }}">
                                 </div>
                             </div>
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Bugs -->
+                            <!-- versiebeheer -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Bugs</label>
+                                <label for="versiebeheer-name" class="col-sm-3 control-label">versiebeheer</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Bugs" id="Bugs" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="versiebeheer" id="versiebeheer" class="form-control" value="{{ old('versiebeheer') }}">
                                 </div>
                             </div>
 
@@ -126,69 +128,69 @@
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Oplevering -->
+                            <!-- bugs -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Oplevering</label>
+                                <label for="bugs-name" class="col-sm-3 control-label">bugs</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Oplevering" id="Oplevering" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="bugs" id="bugs" class="form-control" value="{{ old('bugs') }}">
                                 </div>
                             </div>
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Volgende Vergadering -->
+                            <!-- features -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Volgende Vergadering</label>
+                                <label for="features-name" class="col-sm-3 control-label">features</label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" name="Volgende Vergadering" id="Volgende Vergadering" class="form-control" value="{{ old('task') }}">
+                                    <input type="text" name="features" id="features" class="form-control" value="{{ old('features') }}">
                                 </div>
                             </div>
 
                             <!--------------------------------------------------------------------------------------------------!>
 
-                            <!-- Bijzonderheden -->
+                            <!-- oplevering -->
                             <div class="form-group">
-                                <label for="task-name" class="col-sm-3 control-label">Bijzonderheden</label>
+                                <label for="oplevering-name" class="col-sm-3 control-label">oplevering</label>
 
                                 <div class="col-sm-6">
-                                    <input type="textarea" name="Bijzonderheden" id="Bijzonderheden" class="form-control" value="{{ old('task') }}">
+                                    <input type="date" name="oplevering" id="oplevering" class="form-control" value="{{ old('oplevering') }}">
                                 </div>
                             </div>
 
-                            {{--<!--------------------------------------------------------------------------------------------------!>--}}
+                        {{--<!--------------------------------------------------------------------------------------------------!>--}}
 
-                            {{--<!-- Features -->--}}
-                            {{--<div class="input_fields_wrap">--}}
-                            {{--<div class="form-group">--}}
-                                {{--<label for="task-name" class="col-sm-3 control-label">Features</label>--}}
+                        <!-- volgende_vergadering -->
+                            <div class="form-group">
+                                <label for="volgende_vergadering-name" class="col-sm-3 control-label">volgende vergadering</label>
 
-                                {{--<div class="col-sm-6">--}}
-                                    {{--<input type="text" name="Features" id="Features" class="form-control" value="{{ old('task') }}">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+                                <div class="col-sm-6">
+                                    <input type="date" name="volgende_vergadering" id="volgende_vergadering" class="form-control" value="{{ old('volgende_vergadering') }}">
+                                </div>
+                            </div>
+
+                        {{--<!--------------------------------------------------------------------------------------------------!>--}}
+
+                        <!-- test
+                            <div class="test-group">
+                                <label for="test-name" class="col-sm-3 control-label">test</label>
+
+                                <div class="col-sm-6">
+                                    <input type="number" name="test" id="test" class="form-control" value="{{ old('test') }}">
+                                </div>
+                            </div>
+-->
+                        {{--<!--------------------------------------------------------------------------------------------------!>--}}
 
 
-
-
-
-
-
-
-
-
-
-
-
-                            <!-- Add Task Button -->
+                        <!-- Add Task Button -->
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6">
                                     <form action="1.html">
                                         <button type="submit" class="btn btn-default")>
                                     </form>
-                                    <i class="fa fa-btn fa-plus"></i>Maak Planning
+                                    <i class="fa fa-btn fa-plus"></i>Maak Project
 
                                     </button>
                                 </div>

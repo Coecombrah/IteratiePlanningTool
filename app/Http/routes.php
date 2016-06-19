@@ -12,7 +12,9 @@
 */
 
 use App\Task;
-use App\task_user;
+use App\planning;
+use App\planning_task;
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -69,20 +71,84 @@ Route::group(['middleware' => ['web']], function () {
         $watisdit = DB::table('tasks')->where('tasks.id', '=', $id)->get();
 
         return view('taskids', ['taskids' => $watisdit]);
-        
+
 
     });
 
-    Route::get('/tasks/{id}/opleverings', 'opleveringController@index');
+    //Route::get('/tasks/{id}/opleverings', 'opleveringController@index');
     Route::get('/tasks/{id}/plannings', 'planningController@index');
 
+    Route::post('/tasks/{id}/plannings', function (Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'project' => 'required|max:255',
+            'opdrachtgever' => 'required|max:255',
+            'Uitvoerder' => 'required|max:255',
+            'iteratienummer' => 'required|max:255',
+            'startdatum' => 'required|max:255',
+            'einddatum' => 'required|max:255',
+            'bijzonderheden' => 'required|max:255',
+            'werkdagen' => 'required|max:255',
+            'kosten' => 'required|max:255',
+            'versiebeheer' => 'required|max:255',
+            'bugs' => 'required|max:255',
+            'features' => 'required|max:255',
+            'oplevering' => 'required|max:255',
+            'volgende_vergadering' => 'required|max:255',
+            //'test' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+
+        $planning_task = new planning_task;
+        $planning = new planning;
+        $planning->project = $request->project;
+        $planning->opdrachtgever = $request->opdrachtgever;
+        $planning->Uitvoerder = $request->Uitvoerder;
+        $planning->iteratienummer = $request->iteratienummer;
+        $planning->startdatum = $request->startdatum;
+        $planning->einddatum = $request->einddatum;
+        $planning->bijzonderheden = $request->bijzonderheden;
+        $planning->werkdagen = $request->werkdagen;
+        $planning->versiebeheer = $request->versiebeheer;
+        $planning->kosten = $request->kosten;
+        $planning->bugs = $request->bugs;
+        $planning->features = $request->features;
+        $planning->oplevering = $request->oplevering;
+        $planning->volgende_vergadering = $request->volgende_vergadering;
+        $planning->save();
+        //$idee = planning::find($id);
+
+        //$planning_task->planning_id = $idee;
+        //$planning_task->task_id = $request->test;
+       // $planning_task->save();
+       // $planning->save();
+
+        return redirect('/tasks');
+
+    });
+
+    Route::group(['middleware' => 'App\Http\Middleware\Admin'], function()
+    {
+        Route::get('/adminroles', function(Request $request)
+        {
+            $adminaccount = User::orderBy('created_at', 'asc')->get();
+
+
+            return view('users', ['users' => $adminaccount]);
+        });
+
+    });
 
 
     /**
      * Add New Task
      */
     Route::post('/task', function (Request $request) {
-        $user = Auth::user();
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
@@ -111,24 +177,3 @@ Route::group(['middleware' => ['web']], function () {
 
 
 });
-
-
-
-
-
-
-
-
-
-
-/**Route::group(['middleware' => ['web']], function () {
-    // Show Task Dashboard
-    Route::get('/tasks', 'TaskController@index');
-
-    // Add New Task
-    Route::post('/task', 'TaskController@insert_task');
-
-    // Delete Task
-    Route::delete('/task/{id}', 'TaskController@delete_task');
-});
- */

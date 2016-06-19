@@ -25,8 +25,8 @@
                                     <!-- ga! knop hieronder -->
                                     <td>
                                         <form action="/iteratieproject/public/tasks/{{ $task->id }}">
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-btn fa-pencil"></i>iets
+                                            <button type="submit" class="btn btn-danger" style="float: right">
+                                                <i class="fa fa-btn fa-pencil"></i>Gaan
                                             </button>
                                         </form>
                                     </td>
